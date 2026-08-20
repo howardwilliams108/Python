@@ -1,0 +1,87 @@
+# This python script replicates a real receipt based on Dunkin Donuts
+title = "Welcome to Dunkin"
+store_number = "Store#: 351130"
+road = "3501 Davie Rd"
+city_state = "Davie, FL 33314"
+phone = "(954) 355-1391"
+cashier = "1032321 Lewis-Celest"
+dining = "Eat In"
+from datetime import date
+from datetime import datetime
+today = date.today()
+now = datetime.now()
+formatted_date = now.strftime("%m/%d/%Y")
+formatted_time = now.strftime("%I:%M:%p")
+
+
+chk = int(input("Enter check number: "))
+credit_card = input("Enter credit card number: ")
+hidden = '*' * (len(credit_card)-4) + credit_card[-4:]
+auth = input('Enter Auth Code: ')
+entry = input('Enter Entry Mode: ')
+tran = input('Enter Transaction Type: ')
+aid = input('Enter AID: ')
+card = input('Enter the type of card: ')
+item1_name = input('What is the first item: ')
+item1_quantity = int(input(f'How many of {item1_name}: '))
+item1_value = float(input(f'What is the price of {item1_name}: '))
+
+item2_name = input('What is the second item: ')
+item2_quantity = int(input(f'How many of {item2_name}: '))
+item2_value = float(input(f'What is the price of {item2_name}: '))
+# I chose to use item2 as a flavor for the drink
+
+
+tax_rate = float(input("What is the sales tax for your state(%): ")) / 100
+tip = float(input("What do you add for tip(%): ")) / 100
+
+
+item1_subtotal = item1_quantity * item1_value
+item2_subtotal = item2_quantity * item2_value
+subtotal = item1_subtotal + item2_subtotal
+tax_dollars = subtotal * tax_rate
+tip_dollars = subtotal * tip
+total = subtotal + tax_dollars + tip_dollars
+print(f'\n{title:^44}')
+print(f'{store_number:^44}')
+print(f'{road:^44}')
+print(f'{city_state:^44}')
+print(f'{phone:^44}')
+print(f'{cashier}')
+print('-' * 44)
+print(f'                   CHK {chk}')
+print(f'            {formatted_date} {formatted_time}')
+print('-' * 44)
+print(f'{dining:^44}')
+print(f'{item1_quantity:<4}{item1_name:<18}         ${item1_subtotal:>1.2f}')
+print(f'         {item2_name:<18}    ${item2_subtotal:>1.2f}')
+print(f'{card:<4}                           ${total:>1.2f}')
+print(f'{hidden}')
+print(f'Tran Type: {tran}')
+print(f'Entry Mode: {entry}')
+print(f'Auth Code: {auth}')
+print(f'{card} Debit')
+print(f'AID: {aid}')
+print('No Signature Allowed')
+print('I agree to pay the above total\namount accoring to the card\nissuer\n(merchant agreement if credit\nvoucher)')
+print()
+print()
+print(f'Sub Total:                     ${subtotal:>1.2f}')
+print(f'FL Sales Tax:                  ${tax_dollars:>1.2f}')
+print(f'Payment:                       ${total:>1.2f}')
+print(f'Change Due:                    $0.00')
+print(f' {"----------Check Closed----------":^44}'         )
+print(f'            {formatted_date} {formatted_time}')
+print()
+print()
+print('*' * 44)
+print(f'{"Donut forget to tell us about":^44}')
+print(f'{"today\'s visit! Talk to us at":^44}')
+print(f'{"www.DunkinRunsOnYou.com":^44}')
+print(f'{"withon 3 days and receive a":^44}')
+print(f'{"FREE CLASSIC DONUT":^44}')
+print(f'{"on your next visit when you":^44}')
+print(f'{"purchase a Medium or Larger Beverage":^44}')
+print()
+print()
+print(f'{"See restrictions on dunkindonuts.com":^44}')
